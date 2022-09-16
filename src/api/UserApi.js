@@ -1,5 +1,5 @@
 import axios from 'axios';
-const userServer = `https://stormy-thicket-96949.herokuapp.com/api`;
+const userServer = `http://18.144.173.200:4000/api`;
 
 export function getUserInfo() {
 	const token = localStorage.getItem('auth-token');

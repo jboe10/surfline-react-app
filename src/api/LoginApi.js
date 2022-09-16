@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const loginServer = `https://stormy-thicket-96949.herokuapp.com/api/user`;
+const loginServer = `http://18.144.173.200:4000/api/user`;
 
 export default function LoginRequest(email, pass) {
 	return axios
