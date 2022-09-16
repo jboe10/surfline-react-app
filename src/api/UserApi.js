@@ -1,5 +1,6 @@
 import axios from 'axios';
-const userServer = `http://18.144.173.200:4000/api`;
+import { backEndUrl } from '../utils/Constants';
+const userServer = `${backEndUrl}/api`;
 
 export function getUserInfo() {
 	const token = localStorage.getItem('auth-token');

@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { backEndUrl } from '../utils/Constants';
 
-const loginServer = `http://18.144.173.200:4000/api/user`;
+const loginServer = `${backEndUrl}/api/user`;
 
 export default function LoginRequest(email, pass) {
 	return axios

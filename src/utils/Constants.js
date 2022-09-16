@@ -4,3 +4,5 @@ export const colorClassName = {
 	fair: 'blue-surf',
 	poor: 'gray-surf',
 };
+
+export const backEndUrl = 'http://18.144.173.200:4000';
