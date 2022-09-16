@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { backEndUrl } from '../utils/Constants';
 
-const loginServer = `https://stormy-thicket-96949.herokuapp.com/api/user`;
+const loginServer = `${backEndUrl}/api/user`;
 
 export default function LoginRequest(email, pass) {
 	return axios
