@@ -5,4 +5,4 @@ export const colorClassName = {
 	poor: 'gray-surf',
 };
 
-export const backEndUrl = 'http://18.144.173.200:4000';
+export const backEndUrl = 'http://localhost:4000';

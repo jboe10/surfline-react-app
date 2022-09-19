@@ -26,12 +26,15 @@ export const passwordLoginValidation = (password, inputElement) => {
 
 export const convertArrayToHashOfId = (array, key) => {
 	const initialValue = {};
-	return array.reduce((obj, item) => {
-		return {
-			...obj,
-			[item[key]]: '',
-		};
-	}, initialValue);
+	if (array.length > 0) {
+		return array.reduce((obj, item) => {
+			return {
+				...obj,
+				[item[key]]: '',
+			};
+		}, initialValue);
+	}
+	return {};
 };
 
 export const surfColorClassNameGen = (baseClass, surfCondition) => {
