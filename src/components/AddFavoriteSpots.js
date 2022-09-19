@@ -13,26 +13,24 @@ export default function AddFavoriteSpots(props) {
 			// Get list of users Favorite Spots
 			try {
 				const userInfo = await getUserInfo();
-				// Make a hash of spots based on IDS for checkboxes
-				const hashOfUsersSpots = convertArrayToHashOfId(
-					userInfo.favoriteSpots,
-					'_id'
-				);
-				// Find out which Checkboxes to set to checked or not Checked and put them in an array
-				setCheckBoxSpots(
-					spots.map(spot => {
-						const obj = {};
-						// Check hash of users favorite spots against all spots
-						if (hashOfUsersSpots[spot._id] === '') {
-							obj['checked'] = true;
-						} else {
-							obj['checked'] = false;
-						}
-						obj['_id'] = spot._id;
-						obj['spot'] = spot;
-						return obj;
-					})
-				);
+
+				const userSpotHash = {};
+				userInfo.forEach(spot => {
+					userSpotHash[spot._id] = 'ff';
+				});
+
+				const checkedSpots = spots.map(spot => {
+					let checked = false;
+					if (userSpotHash[spot._id] !== undefined) {
+						checked = true;
+					}
+					return {
+						spot: { ...spot },
+						checked,
+					};
+				});
+
+				setCheckBoxSpots(checkedSpots);
 			} catch (error) {
 				props.setShow(false);
 				alert('Please Sign In To Continue');
@@ -47,10 +45,9 @@ export default function AddFavoriteSpots(props) {
 	);
 
 	const handelCheckBoxChange = (event, id) => {
-		let checkBoxSpotsCopy = [...checkBoxSpots];
-		checkBoxSpotsCopy = checkBoxSpotsCopy.map(box => {
-			if (box._id === id) {
-				return { ...box, checked: event.target.checked };
+		const checkBoxSpotsCopy = checkBoxSpots.map(box => {
+			if (box.spot._id === id) {
+				return { spot: { ...box.spot }, checked: event.target.checked };
 			}
 			return box;
 		});
@@ -58,15 +55,14 @@ export default function AddFavoriteSpots(props) {
 	};
 
 	const saveClickHandler = async () => {
-		const checked = checkBoxSpots.reduce((aa, { checked, _id }) => {
-			if (checked === true) {
-				aa.push(_id);
+		let listOfChecked = [];
+		checkBoxSpots.forEach(checkbox => {
+			if (checkbox.checked === true) {
+				listOfChecked.push(checkbox.spot._id);
 			}
-			return aa;
-		}, []);
+		});
 
-		// Set Users Favorite Spots
-		await updateUserSpots(checked);
+		await updateUserSpots(listOfChecked);
 		props.setShow(false);
 	};
 
@@ -80,8 +76,8 @@ export default function AddFavoriteSpots(props) {
 		props.setShow(false);
 	};
 
-	const checkboxChangeHandler = (event, check) => {
-		setCheckBoxSpots(handelCheckBoxChange(event, check.spot._id));
+	const checkboxChangeHandler = (event, id) => {
+		setCheckBoxSpots(handelCheckBoxChange(event, id));
 	};
 
 	return (
@@ -93,7 +89,7 @@ export default function AddFavoriteSpots(props) {
 			<div className="spots-modal">
 				<div className="checkbox-wrap">
 					{checkBoxSpots.map((check, index) => (
-						<div className="checkboxes" key={check.spot._id}>
+						<div className="checkboxes" key={check.spot.name}>
 							<Checkbox
 								type="checkbox"
 								name={check.spot.name}

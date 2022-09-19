@@ -8,9 +8,13 @@ export function getUserInfo() {
 		method: 'GET',
 		url: `${userServer}/user`,
 		headers: { 'auth-token': token },
-	}).then(response => {
-		return response.data;
-	});
+	})
+		.then(response => {
+			return response.data;
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
 
 export function updateUserSpots(favSpots) {
@@ -21,14 +25,23 @@ export function updateUserSpots(favSpots) {
 			url: `${userServer}/user`,
 			data: { favoriteSpots: favSpots },
 			headers: { 'auth-token': token },
-		}).then(response => {
-			return response.data;
-		});
+		})
+			.then(response => {
+				return response.data;
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}
 }
 
 export function getSpotList() {
-	return axios.get(`${userServer}/spots`).then(response => {
-		return response.data;
-	});
+	return axios
+		.get(`${userServer}/spots`)
+		.then(response => {
+			return response.data;
+		})
+		.catch(err => {
+			console.log(err);
+		});
 }
