@@ -10,8 +10,11 @@ import CamFavorite from './CamFavorite';
 import { getUserInfo } from '../api/UserApi';
 import AddFavoriteSpots from './AddFavoriteSpots';
 import { scrollLeftSmooth } from '../utils/Helpers';
+import { useContext } from 'react';
+import { UserInfoContext } from '../context/UserInfoContext';
 
 export default function CamSelect() {
+	const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext);
 	const [favoriteSpots, setFavoriteSpots] = useState([]);
 	const [showAddSpots, setShowAddSpots] = useState(false);
 	const favsEle = useRef(null);
@@ -21,7 +24,9 @@ export default function CamSelect() {
 			try {
 				const userInfo = await getUserInfo();
 				if (userInfo !== undefined) {
-					setFavoriteSpots(userInfo);
+					// setFavoriteSpots(userInfo);
+					console.log(userInfo);
+					setUserInfoContext({ favoriteSpots: [...userInfo] });
 				}
 			} catch (error) {
 				console.log(error);
@@ -59,7 +64,7 @@ export default function CamSelect() {
 						</div>
 					</div>
 					<div className="favorites">
-						{favoriteSpots.map(spot => (
+						{userInfoContext.favoriteSpots?.map(spot => (
 							<CamFavorite
 								id={spot._id}
 								name={spot.name}
