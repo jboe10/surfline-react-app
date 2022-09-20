@@ -57,7 +57,7 @@ export default function SignIn() {
 							</div>
 							<div className="login-input">
 								<input
-									type="text"
+									type="password"
 									onChange={passwordInputChangeHandler}
 									placeholder="PASSWORD"
 								/>
