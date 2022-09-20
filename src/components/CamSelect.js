@@ -16,25 +16,15 @@ export default function CamSelect() {
 	const [showAddSpots, setShowAddSpots] = useState(false);
 	const favsEle = useRef(null);
 
-	// useEffect(() => {
-	// 	const getUserSpots = async () => {
-	// 		try {
-	// 			const userInfo = await getUserInfo();
-	// 			setFavoriteSpots(userInfo.favoriteSpots);
-	// 		} catch (error) {
-	// 			setFavoriteSpots([]);
-	// 		}
-	// 	};
-	// 	getUserSpots();
-	// }, []);
-
 	useEffect(() => {
 		const getUserSpots = async () => {
 			try {
 				const userInfo = await getUserInfo();
-				setFavoriteSpots(userInfo.favoriteSpots);
+				if (userInfo !== undefined) {
+					setFavoriteSpots(userInfo);
+				}
 			} catch (error) {
-				setFavoriteSpots([]);
+				console.log(error);
 			}
 		};
 		getUserSpots();
@@ -69,7 +59,7 @@ export default function CamSelect() {
 						</div>
 					</div>
 					<div className="favorites">
-						{/* {favoriteSpots.map(spot => (
+						{favoriteSpots.map(spot => (
 							<CamFavorite
 								id={spot._id}
 								name={spot.name}
@@ -77,7 +67,7 @@ export default function CamSelect() {
 								height={spot.size}
 								key={spot._id}
 							/>
-						))} */}
+						))}
 					</div>
 				</div>
 				<div className="arrows">
