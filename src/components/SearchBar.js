@@ -4,12 +4,15 @@ import surflineSmall from '../imgs/surfline.png';
 import SearchModal from './SearchModal';
 import DropdownMenu2 from '../resources/DropdownMenu2';
 import { getSpotList } from '../api/UserApi';
+import { UserInfoContext } from '../context/UserInfoContext';
+import { useContext } from 'react';
 
 export default function SearchBar() {
 	const [showSearchModal, setShowSearchModal] = useState(false);
 	const [forecastDrop, setForecastDrop] = useState(false);
 	const [spots, setSpots] = useState([]);
 	const [showLogout, setShowLogout] = useState(false);
+	const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext);
 
 	useEffect(() => {
 		const getSpots = async () => {
@@ -35,6 +38,7 @@ export default function SearchBar() {
 			setShowLogout(false);
 			localStorage.setItem('auth-token', '');
 		}
+		setUserInfoContext({ favoriteSpots: [] });
 	};
 
 	const searchClickHandler = () => {
