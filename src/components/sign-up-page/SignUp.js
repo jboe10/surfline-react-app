@@ -5,6 +5,7 @@ import {
 	faEnvelopeOpenText,
 	faNewspaper,
 	faCompass,
+	faEye,
 } from '@fortawesome/free-solid-svg-icons';
 import { CreateUser } from '../../api/LoginApi';
 import { useHistory } from 'react-router-dom';
@@ -118,21 +119,23 @@ export default function LogInPage() {
 							<div className="login-input">
 								<input
 									className="border-gray"
-									type="text"
+									type="password"
 									onChange={passwordInputChangeHandler}
 									placeholder="PASSWORD"
 									ref={passwordInput}
 								/>
+								{/* <FontAwesomeIcon icon={faEye} /> */}
 							</div>
 							<div className="register-info">(Min 6 Characters)</div>
 							<div className="login-input">
 								<input
 									className="border-gray"
-									type="text"
+									type="password"
 									onChange={passwordInputReEnterChangeHandler}
 									placeholder="RE ENTER PASSWORD"
 									ref={passwordInputReEnter}
 								/>
+								{/* <FontAwesomeIcon icon={faEye} /> */}
 							</div>
 							<div className="register-info">(Re-Enter Password)</div>
 							<button type="submit" className="sign-in-btn">
