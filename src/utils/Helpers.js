@@ -19,9 +19,13 @@ export const emailLoginValidation = (email, inputElement) => {
 	return re.test(String(email).toLowerCase());
 };
 
-export const passwordLoginValidation = (password, inputElement) => {
+export const passwordLoginValidation = password => {
 	const regex = /.{6,}/gm;
 	return regex.test(String(password).toLowerCase);
+};
+
+export const passwordReEnterValidation = (password, password2) => {
+	return password === password2;
 };
 
 export const convertArrayToHashOfId = (array, key) => {

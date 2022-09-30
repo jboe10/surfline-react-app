@@ -5,6 +5,7 @@ import {
 	faEnvelopeOpenText,
 	faNewspaper,
 	faCompass,
+	faEye,
 } from '@fortawesome/free-solid-svg-icons';
 import { CreateUser } from '../../api/LoginApi';
 import { useHistory } from 'react-router-dom';
@@ -12,37 +13,50 @@ import {
 	nameLoginValidation,
 	emailLoginValidation,
 	passwordLoginValidation,
+	passwordReEnterValidation,
 } from '../../utils/Helpers';
 
 export default function LogInPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [passwordReEnter, setPasswordReEnter] = useState('');
+
 	const [name, setName] = useState('');
 	const history = useHistory();
 
 	const nameInput = useRef(null);
 	const emailInput = useRef(null);
 	const passwordInput = useRef(null);
+	const passwordInputReEnter = useRef(null);
 
 	const formSubmit = async event => {
 		event.preventDefault();
 		const nameValid = nameLoginValidation(name);
 		const emailValid = emailLoginValidation(email);
 		const passwordValid = passwordLoginValidation(password);
+		const passwordReEnterValid = passwordReEnterValidation(
+			password,
+			passwordReEnter
+		);
 
-		!nameValid
+		nameValid
 			? (nameInput.current.className = 'border-gray')
 			: (nameInput.current.className = 'border-red');
 
-		!emailValid
+		emailValid
 			? (emailInput.current.className = 'border-gray')
 			: (emailInput.current.className = 'border-red');
 
-		!passwordValid
+		passwordValid
 			? (passwordInput.current.className = 'border-gray')
 			: (passwordInput.current.className = 'border-red');
 
-		if (nameValid && emailValid && passwordValid) {
+		passwordReEnterValid
+			? (passwordInputReEnter.current.className = 'border-gray')
+			: (passwordInputReEnter.current.className = 'border-red');
+
+		if (nameValid && emailValid && passwordValid && passwordReEnterValid) {
+			console.log(passwordReEnterValid);
 			const resp = await CreateUser(name, email, password);
 			if (resp) {
 				history.push('/login');
@@ -62,6 +76,10 @@ export default function LogInPage() {
 
 	const passwordInputChangeHandler = event => {
 		setPassword(event.target.value);
+	};
+
+	const passwordInputReEnterChangeHandler = event => {
+		setPasswordReEnter(event.target.value);
 	};
 	return (
 		<div className="sign-up-page">
@@ -101,13 +119,25 @@ export default function LogInPage() {
 							<div className="login-input">
 								<input
 									className="border-gray"
-									type="text"
+									type="password"
 									onChange={passwordInputChangeHandler}
 									placeholder="PASSWORD"
 									ref={passwordInput}
 								/>
+								{/* <FontAwesomeIcon icon={faEye} /> */}
 							</div>
 							<div className="register-info">(Min 6 Characters)</div>
+							<div className="login-input">
+								<input
+									className="border-gray"
+									type="password"
+									onChange={passwordInputReEnterChangeHandler}
+									placeholder="RE ENTER PASSWORD"
+									ref={passwordInputReEnter}
+								/>
+								{/* <FontAwesomeIcon icon={faEye} /> */}
+							</div>
+							<div className="register-info">(Re-Enter Password)</div>
 							<button type="submit" className="sign-in-btn">
 								SIGN UP
 							</button>
