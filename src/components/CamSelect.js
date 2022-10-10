@@ -6,7 +6,7 @@ import {
 	faArrowLeft,
 	faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
-import CamFavorite from './CamFavorite';
+import { CamFavorite } from './CamFavorite';
 import { getUserInfo } from '../api/UserApi';
 import AddFavoriteSpots from './AddFavoriteSpots';
 import { scrollLeftSmooth } from '../utils/Helpers';

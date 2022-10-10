@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getSpotList } from '../../api/UserApi';
-import CamFavorite from '../CamFavorite';
+import { CamFavorite } from '../CamFavorite';
 import SearchBar from '../SearchBar';
 
 export default function MobileForecastsNav() {

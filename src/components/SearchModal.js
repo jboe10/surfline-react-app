@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getSpotList } from '../api/UserApi';
-import CamFavorite from './CamFavorite';
+import { CamFavorite } from './CamFavorite';
 
 export default function SearchModal(props) {
 	const [searchInput, setSearchInput] = useState();
