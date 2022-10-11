@@ -41,6 +41,14 @@ export default function SearchBar() {
 		setShowSearchModal(true);
 	};
 
+	const mouseEnterHandler = () => {
+		setForecastDrop(true);
+	};
+
+	const mouseLeaveHandler = () => {
+		setForecastDrop(false);
+	};
+
 	return (
 		<>
 			<div className="search-bar">
@@ -64,8 +72,8 @@ export default function SearchBar() {
 				</div>
 				<div
 					className="dropdown-f"
-					onMouseEnter={() => setForecastDrop(true)}
-					onMouseLeave={() => setForecastDrop(false)}
+					onMouseEnter={mouseEnterHandler}
+					onMouseLeave={mouseLeaveHandler}
 				>
 					FORECASTS
 					{forecastDrop && <DropdownMenu2 link="/forecasts/" spots={spots} />}
