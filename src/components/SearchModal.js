@@ -1,35 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { getSpotList } from '../api/UserApi';
-import CamFavorite from './CamFavorite';
+import { CamFavorite } from './CamFavorite';
+import { useSpotList } from '../hooks/queries/UseSpotList';
 
 export default function SearchModal(props) {
 	const [searchInput, setSearchInput] = useState();
-	const [spots, setSpots] = useState([]);
-	const [results, setResults] = useState([]);
-
-	useEffect(() => {
-		const getSpots = async () => {
-			setSpots(await getSpotList());
-		};
-		getSpots();
-	}, []);
-
-	const inputChangeHandler = event => {
-		setResults(
-			spots.filter(spot => spot.name.search(new RegExp(searchInput, 'i')) >= 0)
-		);
-		return event.target.value;
-	};
+	const query = useSpotList();
 
 	const closeClickHandler = () => {
 		props.setShowSearchModal(false);
 	};
 
 	const searchInputChangeHandler = event => {
-		setSearchInput(inputChangeHandler(event));
+		setSearchInput(event.target.value);
 	};
+	
 	return (
 		<div className="search-modal">
 			<div className="search">
@@ -48,15 +34,17 @@ export default function SearchModal(props) {
 					</div>
 				</div>
 				<div className="search-results">
-					{results.map(spot => (
-						<CamFavorite
-							id={spot._id}
-							name={spot.name}
-							quality={spot.quality}
-							height={spot.size}
-							key={spot._id}
-						/>
-					))}
+					{query.data
+						.filter(spot => spot.name.search(new RegExp(searchInput, 'i')) >= 0)
+						.map(filteredSpot => (
+							<CamFavorite
+								id={filteredSpot._id}
+								name={filteredSpot.name}
+								quality={filteredSpot.quality}
+								height={filteredSpot.size}
+								key={filteredSpot._id}
+							/>
+						))}
 				</div>
 			</div>
 		</div>

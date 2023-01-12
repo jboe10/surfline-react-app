@@ -3,26 +3,21 @@ import surfline from '../imgs/fullLogo.png';
 import surflineSmall from '../imgs/surfline.png';
 import SearchModal from './SearchModal';
 import DropdownMenu2 from '../resources/DropdownMenu2';
-import { getSpotList } from '../api/UserApi';
+import { useSpotList } from '../hooks/queries/UseSpotList';
 
 export default function SearchBar() {
 	const [showSearchModal, setShowSearchModal] = useState(false);
 	const [forecastDrop, setForecastDrop] = useState(false);
-	const [spots, setSpots] = useState([]);
 	const [showLogout, setShowLogout] = useState(false);
+	const query = useSpotList();
 
-	useEffect(() => {
-		const getSpots = async () => {
-			setSpots(await getSpotList());
-		};
-		const token = localStorage.getItem('auth-token');
-		if (token) {
-			setShowLogout(true);
-		} else {
-			setShowLogout(false);
-		}
-		getSpots();
-	}, []);
+	// TODO: fix causes infinite loop for some reason
+	// const token = localStorage.getItem('auth-token');
+	// if (token) {
+	// 	setShowLogout(true);
+	// } else {
+	// 	setShowLogout(false);
+	// }
 
 	let searchModal;
 	showSearchModal
@@ -39,6 +34,14 @@ export default function SearchBar() {
 
 	const searchClickHandler = () => {
 		setShowSearchModal(true);
+	};
+
+	const mouseEnterHandler = () => {
+		setForecastDrop(true);
+	};
+
+	const mouseLeaveHandler = () => {
+		setForecastDrop(false);
 	};
 
 	return (
@@ -64,11 +67,13 @@ export default function SearchBar() {
 				</div>
 				<div
 					className="dropdown-f"
-					onMouseEnter={() => setForecastDrop(true)}
-					onMouseLeave={() => setForecastDrop(false)}
+					onMouseEnter={mouseEnterHandler}
+					onMouseLeave={mouseLeaveHandler}
 				>
 					FORECASTS
-					{forecastDrop && <DropdownMenu2 link="/forecasts/" spots={spots} />}
+					{forecastDrop && (
+						<DropdownMenu2 link="/forecasts/" spots={query.data} />
+					)}
 				</div>
 				<div className="news-link">
 					<a href="/news">NEWS</a>

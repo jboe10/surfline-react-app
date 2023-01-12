@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faPlusCircle,
@@ -6,39 +6,15 @@ import {
 	faArrowLeft,
 	faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
-import CamFavorite from './CamFavorite';
-import { getUserInfo } from '../api/UserApi';
+import { CamFavorite } from './CamFavorite';
 import AddFavoriteSpots from './AddFavoriteSpots';
 import { scrollLeftSmooth } from '../utils/Helpers';
+import { useUserInfo } from '../hooks/queries/UseUserInfo';
 
 export default function CamSelect() {
-	const [favoriteSpots, setFavoriteSpots] = useState([]);
 	const [showAddSpots, setShowAddSpots] = useState(false);
 	const favsEle = useRef(null);
-
-	// useEffect(() => {
-	// 	const getUserSpots = async () => {
-	// 		try {
-	// 			const userInfo = await getUserInfo();
-	// 			setFavoriteSpots(userInfo.favoriteSpots);
-	// 		} catch (error) {
-	// 			setFavoriteSpots([]);
-	// 		}
-	// 	};
-	// 	getUserSpots();
-	// }, []);
-
-	useEffect(() => {
-		const getUserSpots = async () => {
-			try {
-				const userInfo = await getUserInfo();
-				setFavoriteSpots(userInfo.favoriteSpots);
-			} catch (error) {
-				setFavoriteSpots([]);
-			}
-		};
-		getUserSpots();
-	}, [showAddSpots]);
+	const queryUserInfo = useUserInfo();
 
 	const addClickHandler = () => {
 		setShowAddSpots(true);
@@ -69,7 +45,7 @@ export default function CamSelect() {
 						</div>
 					</div>
 					<div className="favorites">
-						{/* {favoriteSpots.map(spot => (
+						{queryUserInfo.data.map(spot => (
 							<CamFavorite
 								id={spot._id}
 								name={spot.name}
@@ -77,7 +53,7 @@ export default function CamSelect() {
 								height={spot.size}
 								key={spot._id}
 							/>
-						))} */}
+						))}
 					</div>
 				</div>
 				<div className="arrows">
