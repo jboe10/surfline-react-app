@@ -6,23 +6,16 @@ import {
 	faNewspaper,
 	faCompass,
 } from '@fortawesome/free-solid-svg-icons';
-import LoginRequest from '../../api/LoginApi';
-import { useHistory } from 'react-router-dom';
+import { UseLoginRequest } from '../../hooks/mutations/UseLoginRequest';
 
 export default function SignIn() {
 	const [login, setLogin] = useState();
 	const [password, setPassword] = useState();
-	const history = useHistory();
+	const mutation = UseLoginRequest();
 
 	const formSubmit = async event => {
 		event.preventDefault();
-		try {
-			const resp = await LoginRequest(login, password);
-			localStorage.setItem('auth-token', resp);
-			history.push('/');
-		} catch {
-			alert('invalid user/pass');
-		}
+		mutation.mutate({ login, password });
 	};
 
 	const loginInputChangeHandler = event => {

@@ -6,3 +6,5 @@ export const colorClassName = {
 };
 
 export const backEndUrl = 'https://18.144.173.200';
+export const userServer = `${backEndUrl}/api`;
+export const loginServer = `${backEndUrl}/api/user`;

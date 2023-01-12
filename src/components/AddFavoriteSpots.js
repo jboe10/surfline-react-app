@@ -1,44 +1,48 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { getSpotList, getUserInfo, updateUserSpots } from '../api/UserApi';
-import { convertArrayToHashOfId } from '../utils/Helpers';
+import React, { useRef, useState } from 'react';
+import { useEffect } from 'react';
+import { useUpdateUserSpots } from '../hooks/mutations/UseUpdateUserSpots';
+import { useSpotList } from '../hooks/queries/UseSpotList';
+import { useUserInfo } from '../hooks/queries/UseUserInfo';
 
 export default function AddFavoriteSpots(props) {
 	const [checkBoxSpots, setCheckBoxSpots] = useState([]);
 	const backgroundDiv = useRef(null);
 
+	const querySpotList = useSpotList();
+	const queryUserInfo = useUserInfo();
+	const mutation = useUpdateUserSpots();
+
+	//TODO: find why userInfo is not working on back/front
 	useEffect(() => {
-		const spotLists = async () => {
-			// Get list of all Spots
-			const spots = await getSpotList();
-			// Get list of users Favorite Spots
-			try {
-				const userInfo = await getUserInfo();
+		const checkedSpots = querySpotList.data.map(spot => {
+			let checked = false;
+			// if (userSpotHash[spot._id] !== undefined) {
+			// 	checked = true;
+			// }
+			return {
+				spot: { ...spot },
+				checked,
+			};
+		});
 
-				const userSpotHash = {};
-				userInfo.forEach(spot => {
-					userSpotHash[spot._id] = 'ff';
-				});
+		setCheckBoxSpots(checkedSpots);
+	}, [querySpotList.data]);
 
-				const checkedSpots = spots.map(spot => {
-					let checked = false;
-					if (userSpotHash[spot._id] !== undefined) {
-						checked = true;
-					}
-					return {
-						spot: { ...spot },
-						checked,
-					};
-				});
+	// queryUserInfo.data.forEach(spot => {
+	// 	userSpotHash[spot._id] = 'ff';
+	// });
 
-				setCheckBoxSpots(checkedSpots);
-			} catch (error) {
-				props.setShow(false);
-				alert('Please Sign In To Continue');
-				return error;
-			}
-		};
-		spotLists();
-	}, [props]);
+	// const checkedSpots = querySpotList.data.map(spot => {
+	// 	let checked = false;
+	// 	if (userSpotHash[spot._id] !== undefined) {
+	// 		checked = true;
+	// 	}
+	// 	return {
+	// 		spot: { ...spot },
+	// 		checked,
+	// 	};
+	// });
+	// console.log(checkedSpots);
 
 	const Checkbox = props => (
 		<input className="checkBox" type="checkbox" {...props} />
@@ -62,7 +66,8 @@ export default function AddFavoriteSpots(props) {
 			}
 		});
 
-		await updateUserSpots(listOfChecked);
+		// await updateUserSpots(listOfChecked);
+		mutation.mutate(listOfChecked);
 		props.setShow(false);
 	};
 
