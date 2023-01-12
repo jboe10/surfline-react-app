@@ -12,13 +12,17 @@ export default function AddFavoriteSpots(props) {
 	const queryUserInfo = useUserInfo();
 	const mutation = useUpdateUserSpots();
 
-	//TODO: find why userInfo is not working on back/front
 	useEffect(() => {
+		const userSpotHash = {};
+		queryUserInfo.data.forEach(spot => {
+			userSpotHash[spot._id] = 'ff';
+		});
+
 		const checkedSpots = querySpotList.data.map(spot => {
 			let checked = false;
-			// if (userSpotHash[spot._id] !== undefined) {
-			// 	checked = true;
-			// }
+			if (userSpotHash[spot._id] !== undefined) {
+				checked = true;
+			}
 			return {
 				spot: { ...spot },
 				checked,
@@ -26,23 +30,7 @@ export default function AddFavoriteSpots(props) {
 		});
 
 		setCheckBoxSpots(checkedSpots);
-	}, [querySpotList.data]);
-
-	// queryUserInfo.data.forEach(spot => {
-	// 	userSpotHash[spot._id] = 'ff';
-	// });
-
-	// const checkedSpots = querySpotList.data.map(spot => {
-	// 	let checked = false;
-	// 	if (userSpotHash[spot._id] !== undefined) {
-	// 		checked = true;
-	// 	}
-	// 	return {
-	// 		spot: { ...spot },
-	// 		checked,
-	// 	};
-	// });
-	// console.log(checkedSpots);
+	}, [querySpotList.data, queryUserInfo.data]);
 
 	const Checkbox = props => (
 		<input className="checkBox" type="checkbox" {...props} />
@@ -66,7 +54,6 @@ export default function AddFavoriteSpots(props) {
 			}
 		});
 
-		// await updateUserSpots(listOfChecked);
 		mutation.mutate(listOfChecked);
 		props.setShow(false);
 	};

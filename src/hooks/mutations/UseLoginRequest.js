@@ -21,7 +21,7 @@ export const UseLoginRequest = () => {
 		{
 			onSuccess: (data, variables, context) => {
 				// set token and go to home page
-				localStorage.setItem('auth-token', data);
+				localStorage.setItem('auth-token', data.data.token);
 				history.push('/');
 			},
 			onError: (error, variables, context) => {
