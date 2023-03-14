@@ -13,23 +13,27 @@ export default function AddFavoriteSpots(props) {
 	const mutation = useUpdateUserSpots();
 
 	useEffect(() => {
-		const userSpotHash = {};
+		// find User Spots and put them into a set via ID
+		const userSpotIdSet = new Set();
 		queryUserInfo.data?.forEach(spot => {
-			userSpotHash[spot._id] = 'ff';
+			userSpotIdSet.add(spot._id);
 		});
 
-		const checkedSpots = querySpotList.data?.map(spot => {
-			let checked = false;
-			if (userSpotHash[spot._id] !== undefined) {
-				checked = true;
-			}
-			return {
-				spot: { ...spot },
-				checked,
-			};
-		});
+		// find the spots that need to be displayed as checked or unchecked
+		// by comparing spots list vs user's spots
+		setCheckBoxSpots(
+			querySpotList.data?.map(spot => {
+				let checked = false;
+				if (userSpotIdSet.has(spot._id)) {
+					checked = true;
+				}
 
-		setCheckBoxSpots(checkedSpots);
+				return {
+					spot: { ...spot },
+					checked,
+				};
+			})
+		);
 	}, [querySpotList.data, queryUserInfo.data]);
 
 	const Checkbox = props => (
