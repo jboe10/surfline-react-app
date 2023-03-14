@@ -14,7 +14,7 @@ export default function AddFavoriteSpots(props) {
 
 	useEffect(() => {
 		const userSpotHash = {};
-		queryUserInfo.data.forEach(spot => {
+		queryUserInfo.data?.forEach(spot => {
 			userSpotHash[spot._id] = 'ff';
 		});
 
