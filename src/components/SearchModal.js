@@ -15,7 +15,7 @@ export default function SearchModal(props) {
 	const searchInputChangeHandler = event => {
 		setSearchInput(event.target.value);
 	};
-	
+
 	return (
 		<div className="search-modal">
 			<div className="search">
@@ -35,7 +35,9 @@ export default function SearchModal(props) {
 				</div>
 				<div className="search-results">
 					{query.data
-						.filter(spot => spot.name.search(new RegExp(searchInput, 'i')) >= 0)
+						?.filter(
+							spot => spot.name.search(new RegExp(searchInput, 'i')) >= 0
+						)
 						.map(filteredSpot => (
 							<CamFavorite
 								id={filteredSpot._id}

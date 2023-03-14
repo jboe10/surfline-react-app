@@ -18,7 +18,7 @@ export default function AddFavoriteSpots(props) {
 			userSpotHash[spot._id] = 'ff';
 		});
 
-		const checkedSpots = querySpotList.data.map(spot => {
+		const checkedSpots = querySpotList.data?.map(spot => {
 			let checked = false;
 			if (userSpotHash[spot._id] !== undefined) {
 				checked = true;
@@ -37,7 +37,7 @@ export default function AddFavoriteSpots(props) {
 	);
 
 	const handelCheckBoxChange = (event, id) => {
-		const checkBoxSpotsCopy = checkBoxSpots.map(box => {
+		const checkBoxSpotsCopy = checkBoxSpots?.map(box => {
 			if (box.spot._id === id) {
 				return { spot: { ...box.spot }, checked: event.target.checked };
 			}
@@ -80,7 +80,7 @@ export default function AddFavoriteSpots(props) {
 		>
 			<div className="spots-modal">
 				<div className="checkbox-wrap">
-					{checkBoxSpots.map((check, index) => (
+					{checkBoxSpots?.map((check, index) => (
 						<div className="checkboxes" key={check.spot.name}>
 							<Checkbox
 								type="checkbox"
