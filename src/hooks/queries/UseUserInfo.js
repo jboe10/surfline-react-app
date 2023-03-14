@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import { userServer } from '../../utils/Constants';
 
-function getUserInfo() {
+const getUserInfo = async () => {
 	const token = localStorage.getItem('auth-token');
 	return axios({
 		method: 'GET',
@@ -15,7 +15,7 @@ function getUserInfo() {
 		.catch(err => {
 			console.log(err);
 		});
-}
+};
 
 export const useUserInfo = () => {
 	return useQuery('userInfo', getUserInfo);

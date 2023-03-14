@@ -10,7 +10,7 @@ export default function MobileForecastsNav() {
 		<>
 			<SearchBar />
 			<div className="search-results">
-				{query.data.map(spot => (
+				{query.data?.map(spot => (
 					<CamFavorite
 						id={spot._id}
 						name={spot.name}
