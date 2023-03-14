@@ -45,7 +45,7 @@ export default function CamSelect() {
 						</div>
 					</div>
 					<div className="favorites">
-						{queryUserInfo.data.map(spot => (
+						{queryUserInfo.data?.map(spot => (
 							<CamFavorite
 								id={spot._id}
 								name={spot.name}

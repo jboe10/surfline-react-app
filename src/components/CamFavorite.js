@@ -7,7 +7,6 @@ const surfQuality = 'surf-quality';
 
 function CamFavoriteMemo(props) {
 	const surfQualityColor = surfColorClassNameGen(surfQuality, props.quality);
-	console.log('a render');
 
 	return (
 		<div className="favorite-cam-item-wrap">

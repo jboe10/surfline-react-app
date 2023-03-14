@@ -4,7 +4,6 @@ import { userServer } from '../../utils/Constants';
 
 function getUserInfo() {
 	const token = localStorage.getItem('auth-token');
-	console.log(token);
 	return axios({
 		method: 'GET',
 		url: `${userServer}/user`,
