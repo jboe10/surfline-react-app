@@ -56,7 +56,7 @@
           color: $dark-blue
     .search-results
       display: grid 
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+      grid-template-columns: 1fr 
       flex-wrap: wrap
       cursor: pointer
       flex-shrink: 0
@@ -67,3 +67,13 @@
         border-left: 1px solid rgba(0,0,0,0.1)
         a 
           border: none
+@media screen and ( min-width: $xsmall ) 
+  .search-modal
+    .search
+      .search-results
+        grid-template-columns: 1fr 1fr
+@media screen and ( min-width: $medium ) 
+  .search-modal
+    .search
+      .search-results
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr
