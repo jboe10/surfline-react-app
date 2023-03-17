@@ -41,13 +41,12 @@ export default function AddFavoriteSpots(props) {
 	);
 
 	const handelCheckBoxChange = (event, id) => {
-		const checkBoxSpotsCopy = checkBoxSpots?.map(box => {
+		return checkBoxSpots?.map(box => {
 			if (box.spot._id === id) {
 				return { spot: { ...box.spot }, checked: event.target.checked };
 			}
 			return box;
 		});
-		return checkBoxSpotsCopy;
 	};
 
 	const saveClickHandler = async () => {
