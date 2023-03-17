@@ -31,19 +31,19 @@ export default function CamSelect() {
 	return (
 		<>
 			<div className="cam-select">
-				<div className="favorites-wrap" ref={favsEle}>
-					<div className="add-favorite-wrap" onClick={addClickHandler}>
-						<div className="add-favorite">
-							<div className="add">
-								<FontAwesomeIcon icon={faPlusCircle} />
-								<FontAwesomeIcon className="minus" icon={faMinusCircle} />
-							</div>
-							<div className="text">
-								<h5>Add/Remove Favorites</h5>
-								<span>Quickly access the spots you care about most.</span>
-							</div>
+				<div className="add-favorite-wrap" onClick={addClickHandler}>
+					<div className="add-favorite">
+						<div className="add">
+							<FontAwesomeIcon icon={faPlusCircle} />
+							<FontAwesomeIcon className="minus" icon={faMinusCircle} />
+						</div>
+						<div className="text">
+							<h5>Add/Remove Favorites</h5>
+							<span>Quickly access the spots you care about most.</span>
 						</div>
 					</div>
+				</div>
+				<div className="favorites-wrap" ref={favsEle}>
 					<div className="favorites">
 						{queryUserInfo.data?.map(spot => (
 							<CamFavorite

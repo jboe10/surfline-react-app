@@ -4,20 +4,24 @@ import surflineSmall from '../imgs/surfline.png';
 import SearchModal from './SearchModal';
 import DropdownMenu2 from '../resources/DropdownMenu2';
 import { useSpotList } from '../hooks/queries/UseSpotList';
+import { useUserInfo } from '../hooks/queries/UseUserInfo';
 
 export default function SearchBar() {
 	const [showSearchModal, setShowSearchModal] = useState(false);
 	const [forecastDrop, setForecastDrop] = useState(false);
 	const [showLogout, setShowLogout] = useState(false);
 	const query = useSpotList();
+	const q2 = useUserInfo();
 
-	// TODO: fix causes infinite loop for some reason
-	// const token = localStorage.getItem('auth-token');
-	// if (token) {
-	// 	setShowLogout(true);
-	// } else {
-	// 	setShowLogout(false);
-	// }
+	useEffect(() => {
+		const token = localStorage.getItem('auth-token');
+		if (token) {
+			setShowLogout(true);
+		} else {
+			localStorage.removeItem('auth-token');
+			setShowLogout(false);
+		}
+	}, []);
 
 	let searchModal;
 	showSearchModal
@@ -29,6 +33,7 @@ export default function SearchBar() {
 		if (token) {
 			setShowLogout(false);
 			localStorage.setItem('auth-token', '');
+			q2.refetch();
 		}
 	};
 
