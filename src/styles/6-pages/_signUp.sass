@@ -1,7 +1,7 @@
 .border-red
-  border: 1px solid red
+  border: toRem(1px) solid red
 .border-gray
-  border: 1px solid rgba(0,0,0,0.2)
+  border: toRem(1px) solid rgba(0,0,0,0.2)
 a 
   text-decoration: none
   color: #41a4fb
@@ -13,17 +13,17 @@ a
   grid-template-columns: 2fr 5fr
   .sign-up-form
     .body-wrap
-      margin: 0 50px 0 50px
+      margin: 0 toRem(50px) 0 toRem(50px)
       .bodys
         h3 
           font-weight: 700
-          font-size: 25px
-          margin-bottom: 10px
+          font-size: toRem(25px)
+          margin-bottom: toRem(10px)
         .sign-up
-          margin-bottom: 20px
+          margin-bottom: toRem(20px)
         .register-info
-          font-size: 12px
-          margin-bottom: 20px
+          font-size: toRem(12px)
+          margin-bottom: toRem(20px)
         .login-input
           max-width: 100%
           display: flex
@@ -33,23 +33,23 @@ a
             -moz-box-sizing: border-box    /* Firefox, other Gecko */
             box-sizing: border-box   
             width: 100%
-            padding: 17px 10px 17px 10px
+            padding: toRem(17px) toRem(10px) toRem(17px) toRem(10px)
             // padding-right: -10px
             &::placeholder 
-              font-size: 11px
+              font-size: toRem(11px)
           svg 
-            margin-left: 5px
+            margin-left: toRem(5px)
         .sign-in-btn
           width: 100%
-          margin: 15px 0 15px 0
+          margin: toRem(15px) 0 toRem(15px) 0
           text-align: center
           background-color: #41a4fb
           color: white
-          letter-spacing: 2px
-          font-size: 14px
+          letter-spacing: toRem(2px)
+          font-size: toRem(14px)
           font-weight: 700
-          padding: 17px 0 17px 0
-          border: 2px solid #41a4fb
+          padding: toRem(17px) 0 toRem(17px) 0
+          border: toRem(2px) solid #41a4fb
   .benefits
     color: white
     display: flex
@@ -59,26 +59,26 @@ a
     background-size: cover
     background-image: url('../../imgs/sunrise.jpg')
     .benefit-wrap
-      margin-top: 60px
+      margin-top: toRem(60px)
       h2 
         font-weight: 500
         text-align: center
-        font-size: 35px
-        margin-top: 10px
-        margin-bottom: 10px
+        font-size: toRem(35px)
+        margin-top: toRem(10px)
+        margin-bottom: toRem(10px)
       .blurb
         display: flex
-        margin-bottom: 10px
+        margin-bottom: toRem(10px)
         svg
-          font-size: 40px
-          margin-top: 22px
-          margin-right: 30px
+          font-size: toRem(40px)
+          margin-top: toRem(22px)
+          margin-right: toRem(30px)
         .blurb-text
           h4 
             margin-bottom: 0px
           p 
             margin: 0 0 0 0
-            font-size: 15px
+            font-size: toRem(15px)
 @media screen and ( max-width: $large )
   .sign-up-page 
     grid-template-columns: 1fr 1fr
@@ -88,6 +88,6 @@ a
     display: flex
     flex-direction: column
     .sign-up-form
-      margin-bottom: 20px
+      margin-bottom: toRem(20px)
     .benefits
       height: 100%

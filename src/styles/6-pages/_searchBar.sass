@@ -1,10 +1,10 @@
 .search-bar
-  font-size: 12px
+  font-size: toRem(12px)
   font-weight: 700
   color: white
   background-color: rgb(0, 88, 176)
   display: flex
-  height: 56px
+  height: toRem(56px)
   position: relative
   .home-button
     a 
@@ -15,7 +15,7 @@
     cursor: pointer
     display: flex
     align-items: center
-    padding: 0px 15px
+    padding: 0px toRem(15px)
     flex-shrink: 0
     a 
       padding: 0
@@ -24,23 +24,23 @@
   .dropdown-f
     display: flex
     align-items: center
-    padding: 0px 15px
+    padding: 0px toRem(15px)
     flex-shrink: 0
   .dropdown-f:hover
     background-color: $dark-blue
   input
     position: relative
-    margin-top: 10px
-    margin-bottom: 10px
-    margin-left: 10px
+    margin-top: toRem(10px)
+    margin-bottom: toRem(10px)
+    margin-left: toRem(10px)
     flex-shrink: 3
     flex-grow: 2
     min-width: 0
     color: white
     transition: background-color 0.5s ease
     background-color: $dark-blue
-    border-radius: 5px
-    border: 1px solid $dark-blue
+    border-radius: toRem(5px)
+    border: toRem(1px) solid $dark-blue
   input:hover
     background-color: #00366c
   input:hover::after
@@ -53,21 +53,21 @@
     top: 0
     z-index: 100
   input::placeholder
-    padding-left: 5px
+    padding-left: toRem(5px)
     text-align: center
     color: white
-    font-size: 12px
+    font-size: toRem(12px)
     font-weight: 700
   .free-trial-btn
     flex-shrink: 0
     position: relative
     text-align: center
     background-color: #23D737
-    font-size: 12px
+    font-size: toRem(12px)
     font-weight: 700
     color: white
     border: none
-    margin: 5px 10px 5px 10px
+    margin: toRem(5px) toRem(0px) toRem(5px) toRem(10px)
   .free-trial-btn:focus
     outline: none
     border: none
@@ -84,16 +84,16 @@
     flex-shrink: 0
     display: flex
     align-items: center
-    padding: 0 20px
+    padding: 0 toRem(20px)
   .logout-btn 
     color: white
     flex-shrink: 0
     display: flex
     align-items: center
-    padding: 0 20px
+    padding: 0 toRem(20px)
     background-color: $ocean-blue
     border: none
-    font-size: 12px
+    font-size: toRem(12px)
     font-weight: 700
     cursor: pointer
 @media screen and ( max-width: $small )

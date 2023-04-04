@@ -8,8 +8,8 @@
   height: 100%
   .search
     background-color: $ocean-blue
-    padding-left: 40px
-    height: 100px
+    padding-left: toRem(40px)
+    height: toRem(100px)
     .search-bar
       height: 100%
       display: flex
@@ -21,35 +21,35 @@
           display: flex
           align-items: center
           svg
-            margin-right: 5px
+            margin-right: toRem(5px)
             color: white
             font-weight: 300
           input
             width: 100%
             background-color: $ocean-blue
             border: none
-            border-bottom: 2px solid white
+            border-bottom: toRem(2px) solid white
             border-radius: 0
-            font-size: 25px
+            font-size: toRem(25px)
             color: white
             &:focus
               outline: none
             &::placeholder
               text-align: left
-              font-size: 25px  
+              font-size: toRem(25px)  
               color: #3279bf
               font-weight: 600
     .search-exit
-      width: 60px
+      width: toRem(60px)
       height: 100%
       display: flex
       justify-content: center
-      padding-top: 20px
+      padding-top: toRem(20px)
       svg
         color: white
-        font-size: 25px
-        width: 30px
-        border-radius: 5px
+        font-size: toRem(25px)
+        width: toRem(30px)
+        border-radius: toRem(5px)
         &:hover
           background-color: white
           border: 1px solid white
@@ -64,7 +64,7 @@
       margin-left: 15%
       margin-right: 15%
       .favorite-cam-item-wrap
-        border-left: 1px solid rgba(0,0,0,0.1)
+        border-left: toRem(1px) solid rgba(0,0,0,0.1)
         a 
           border: none
 @media screen and ( min-width: $xsmall ) 
