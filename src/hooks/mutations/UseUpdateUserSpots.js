@@ -10,7 +10,7 @@ export function updateUserSpots(favSpots) {
 			method: 'PUT',
 			url: `${userServer}/user`,
 			data: { favoriteSpots: favSpots },
-			headers: { 'auth-token': token },
+			headers: { Authorization: `Bearer ${token}` },
 		}).then(response => {
 			return response.data;
 		});

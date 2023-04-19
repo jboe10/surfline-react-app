@@ -8,7 +8,7 @@ const getUserInfo = async () => {
 		return axios({
 			method: 'GET',
 			url: `${userServer}/user`,
-			headers: { 'auth-token': token },
+			headers: { Authorization: `Bearer ${token}` },
 		}).then(response => {
 			return response.data;
 		});
