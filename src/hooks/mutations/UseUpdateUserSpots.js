@@ -25,10 +25,8 @@ export const useUpdateUserSpots = () => {
 		},
 		{
 			onSuccess: (data, variables, context) => {
-				// TODO: refresh user spots list
-				// TODO: Backend needs to send back full list of spots in response to PUT
-				// then we can update with this code
-				// queryClient.setQueryData('userInfo', data);
+				// update all Favorite spots data around site
+				queryClient.setQueryData('userInfo', data);
 			},
 			onError: (error, variables, context) => {
 				console.log('Failed to Update User Spots: ', error);
