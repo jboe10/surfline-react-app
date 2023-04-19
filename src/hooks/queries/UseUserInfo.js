@@ -9,18 +9,20 @@ const getUserInfo = async () => {
 			method: 'GET',
 			url: `${userServer}/user`,
 			headers: { 'auth-token': token },
-		})
-			.then(response => {
-				return response.data;
-			})
-			.catch(err => {
-				console.log(err);
-			});
+		}).then(response => {
+			return response.data;
+		});
 	} else {
 		return [];
 	}
 };
 
 export const useUserInfo = () => {
-	return useQuery('userInfo', getUserInfo);
+	return useQuery({
+		queryKey: 'userInfo',
+		queryFn: getUserInfo,
+		onError: error => {
+			console.log('Error while getting user Info: ', error);
+		},
+	});
 };

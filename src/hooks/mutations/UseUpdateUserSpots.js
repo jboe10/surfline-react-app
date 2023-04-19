@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { backEndUrl } from '../../utils/Constants';
 const userServer = `${backEndUrl}/api`;
 
@@ -11,18 +11,29 @@ export function updateUserSpots(favSpots) {
 			url: `${userServer}/user`,
 			data: { favoriteSpots: favSpots },
 			headers: { 'auth-token': token },
-		})
-			.then(response => {
-				return response.data;
-			})
-			.catch(err => {
-				console.log(err);
-			});
+		}).then(response => {
+			return response.data;
+		});
 	}
 }
 
 export const useUpdateUserSpots = () => {
-	return useMutation(vars => {
-		return updateUserSpots(vars);
-	}, {});
+	const queryClient = useQueryClient();
+	return useMutation(
+		vars => {
+			return updateUserSpots(vars);
+		},
+		{
+			onSuccess: (data, variables, context) => {
+				// TODO: refresh user spots list
+				// TODO: Backend needs to send back full list of spots in response to PUT
+				// then we can update with this code
+				// queryClient.setQueryData('userInfo', data);
+			},
+			onError: (error, variables, context) => {
+				console.log('Failed to Update User Spots: ', error);
+				alert('Update to Favorite Spots Failed');
+			},
+		}
+	);
 };
