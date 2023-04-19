@@ -5,12 +5,12 @@ import { backEndUrl } from '../../utils/Constants';
 
 const loginServer = `${backEndUrl}/api/user`;
 
-function LoginRequest(email, password) {
+const LoginRequest = (email, password) => {
 	return axios.post(`${loginServer}/login`, {
 		email,
 		password,
 	});
-}
+};
 
 export const UseLoginRequest = () => {
 	const history = useHistory();
@@ -26,8 +26,8 @@ export const UseLoginRequest = () => {
 			},
 			onError: (error, variables, context) => {
 				// An error happened!
-				console.log(`${error}: happened during login attempt}`);
-				alert('invalid user/pass');
+				console.log('happened during login attempt: ', error);
+				alert('Invalid Username or Password');
 			},
 		}
 	);

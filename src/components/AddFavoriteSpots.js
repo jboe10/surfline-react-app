@@ -49,15 +49,13 @@ export default function AddFavoriteSpots(props) {
 		});
 	};
 
+	// on save send spots user has selected to be saved on DB
 	const saveClickHandler = async () => {
-		let listOfChecked = [];
-		checkBoxSpots.forEach(checkbox => {
-			if (checkbox.checked === true) {
-				listOfChecked.push(checkbox.spot._id);
-			}
-		});
-
-		mutation.mutate(listOfChecked);
+		mutation.mutate(
+			checkBoxSpots
+				.filter(checkbox => checkbox.checked)
+				.map(checkbox => checkbox.spot._id)
+		);
 		props.setShow(false);
 	};
 
