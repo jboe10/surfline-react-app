@@ -4,13 +4,13 @@ import { backEndUrl } from '../../utils/Constants';
 const userServer = `${backEndUrl}/api`;
 
 export function updateUserSpots(favSpots) {
-	const token = localStorage.getItem('auth-token');
+	const token = localStorage.getItem('authorization');
 	if (token) {
 		return axios({
 			method: 'PUT',
 			url: `${userServer}/user`,
 			data: { favoriteSpots: favSpots },
-			headers: { Authorization: `Bearer ${token}` },
+			headers: { authorization: `Bearer ${token}` },
 		}).then(response => {
 			return response.data;
 		});

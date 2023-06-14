@@ -3,12 +3,12 @@ import { useQuery } from 'react-query';
 import { userServer } from '../../utils/Constants';
 
 const getUserInfo = async () => {
-	const token = localStorage.getItem('auth-token');
+	const token = localStorage.getItem('authorization');
 	if (token) {
 		return axios({
 			method: 'GET',
 			url: `${userServer}/user`,
-			headers: { Authorization: `Bearer ${token}` },
+			headers: { authorization: `Bearer ${token}` },
 		}).then(response => {
 			return response.data;
 		});
