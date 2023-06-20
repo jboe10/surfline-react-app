@@ -28,6 +28,7 @@ export const UseLoginRequest = () => {
 				// An error happened!
 				console.log('happened during login attempt: ', error);
 				alert('Invalid Username or Password');
+				localStorage.setItem('authorization', '');
 			},
 		}
 	);

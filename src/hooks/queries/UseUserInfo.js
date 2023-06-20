@@ -23,6 +23,10 @@ export const useUserInfo = () => {
 		queryFn: getUserInfo,
 		onError: error => {
 			console.log('Error while getting user Info: ', error);
+			if (error.response.status === 400) {
+				localStorage.setItem('authorization', '');
+				alert('Authentication expired, please re-enter your login info');
+			}
 		},
 	});
 };

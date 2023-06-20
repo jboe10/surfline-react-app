@@ -14,11 +14,11 @@ export default function SearchBar() {
 	const q2 = useUserInfo();
 
 	useEffect(() => {
-		const token = localStorage.getItem('auth-token');
+		const token = localStorage.getItem('authorization');
 		if (token) {
 			setShowLogout(true);
 		} else {
-			localStorage.removeItem('auth-token');
+			localStorage.removeItem('authorization');
 			setShowLogout(false);
 		}
 	}, []);
@@ -29,12 +29,9 @@ export default function SearchBar() {
 		: (searchModal = null);
 
 	const logoutClickHandler = () => {
-		const token = localStorage.getItem('auth-token');
-		if (token) {
-			setShowLogout(false);
-			localStorage.setItem('auth-token', '');
-			q2.refetch();
-		}
+		setShowLogout(false);
+		localStorage.setItem('authorization', '');
+		q2.refetch();
 	};
 
 	const searchClickHandler = () => {
