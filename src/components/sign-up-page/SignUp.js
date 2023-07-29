@@ -91,6 +91,7 @@ export default function LogInPage() {
 							<div className="login-input">
 								<input
 									className="border-gray"
+									id="sign-up-name"
 									type="text"
 									onChange={nameInputChangeHandler}
 									placeholder="FULL NAME"
@@ -101,6 +102,7 @@ export default function LogInPage() {
 							<div className="login-input email">
 								<input
 									className="border-gray"
+									id="sign-up-email"
 									type="text"
 									onChange={emailInputChangeHandler}
 									placeholder="EMAIL"
@@ -112,6 +114,7 @@ export default function LogInPage() {
 								<input
 									className="border-gray"
 									type="password"
+									id="sign-up-password"
 									onChange={passwordInputChangeHandler}
 									placeholder="PASSWORD"
 									ref={passwordInput}
@@ -123,6 +126,7 @@ export default function LogInPage() {
 								<input
 									className="border-gray"
 									type="password"
+									id="sign-up-password-re-enter"
 									onChange={passwordInputReEnterChangeHandler}
 									placeholder="RE ENTER PASSWORD"
 									ref={passwordInputReEnter}
@@ -130,7 +134,7 @@ export default function LogInPage() {
 								{/* <FontAwesomeIcon icon={faEye} /> */}
 							</div>
 							<div className="register-info">(Re-Enter Password)</div>
-							<button type="submit" className="sign-in-btn">
+							<button type="submit" className="sign-in-btn" id="sign-up-btn">
 								SIGN UP
 							</button>
 						</form>
