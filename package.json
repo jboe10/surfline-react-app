@@ -27,9 +27,6 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
 	"browserslist": {
 		"production": [
 			">0.2%",
@@ -44,6 +41,8 @@
 	},
 	"devDependencies": {
 		"cypress": "^12.17.2",
+		"eslint": "^8.46.0",
+		"eslint-plugin-cypress": "^2.13.3",
 		"eslint-plugin-react-hooks": "^4.2.0"
 	},
 	"proxy": "http://localhost:5000"

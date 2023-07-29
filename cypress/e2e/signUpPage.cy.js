@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Registers account inputs', () => {
 	beforeEach(() => {
 		cy.visit('http://localhost:3000/join');
