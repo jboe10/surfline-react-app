@@ -21,7 +21,7 @@ export const emailLoginValidation = (email, inputElement) => {
 
 export const passwordLoginValidation = password => {
 	const regex = /.{6,}/gm;
-	return regex.test(String(password).toLowerCase);
+	return regex.test(String(password).toLowerCase());
 };
 
 export const passwordReEnterValidation = (password, password2) => {

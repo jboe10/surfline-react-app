@@ -26,12 +26,14 @@ export default function LogInPage() {
 	const passwordInputReEnter = useRef(null);
 
 	const mutation = UseCreateUser();
-
+	// TODO: CHECK PASSWORD VALIDATION;
 	const formSubmit = async event => {
 		event.preventDefault();
 		const nameValid = nameLoginValidation(name);
 		const emailValid = emailLoginValidation(email);
+		console.log(password);
 		const passwordValid = passwordLoginValidation(password);
+		console.log(passwordValid);
 		const passwordReEnterValid = passwordReEnterValidation(
 			password,
 			passwordReEnter
