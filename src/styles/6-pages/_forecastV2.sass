@@ -8,16 +8,16 @@
         +box-shadow 
         width: 100%
         object-fit: cover
-        max-height: 460px
+        max-height: toRem(460)
      
     .join-ad 
       .sign-up-ad
-        padding: 15px
+        padding: toRem(15)
         background-color: white
         background-position: center
         background-repeat: no-repeat
         background-size: cover
-        height: 300px
+        height: toRem(300)
         color: white
         text-align: center
         position: relative
@@ -30,17 +30,17 @@
           h2 
             margin-bottom: 0
           h5 
-            margin-top: 10px
+            margin-top: toRem(10)
           h3 
 @media screen and ( min-width: $medium )
   .forecast-v2
     .forecast-wrap
       background-color: $light-gray-border
-      padding: 15px 5% 30px 5%
+      padding: toRem(15) 5% toRem(30) 5%
       .join-ad 
           +box-shadow
-          margin-bottom: 30px
+          margin-bottom: toRem(30)
 @media screen and ( min-width: $large )
   .forecast-v2
     .forecast-wrap
-      padding: 15px 10% 30px 10%
+      padding: toRem(15) 10% toRem(30) 10%

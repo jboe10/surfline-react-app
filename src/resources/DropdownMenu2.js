@@ -1,11 +1,11 @@
 import React from 'react';
 
 export default function DropdownMenu2(props) {
-	const firstHalfSpots = props.spots.slice(
+	const firstHalfSpots = props.spots?.slice(
 		0,
 		Math.floor(props.spots.length / 2)
 	);
-	const secondHalfSpots = props.spots.slice(
+	const secondHalfSpots = props.spots?.slice(
 		Math.ceil(props.spots.length / 2),
 		props.spots.length
 	);
@@ -18,7 +18,7 @@ export default function DropdownMenu2(props) {
 			</div>
 			<div className="forecast-wrapper">
 				<div className="half">
-					{firstHalfSpots.map(spot => (
+					{firstHalfSpots?.map(spot => (
 						<a
 							key={spot._id}
 							className="spot-link"
@@ -29,7 +29,7 @@ export default function DropdownMenu2(props) {
 					))}
 				</div>
 				<div className="half">
-					{secondHalfSpots.map(spot => (
+					{secondHalfSpots?.map(spot => (
 						<a
 							key={spot._id}
 							className="spot-link"

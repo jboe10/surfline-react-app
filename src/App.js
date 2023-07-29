@@ -16,19 +16,11 @@ import large3 from './imgs/large3.jpg';
 import feature from './imgs/feature-lg.jpg';
 import News from './components/news/News';
 import ForecastV2 from './components/forecasts/ForecastV2';
-import { getSpotList } from './api/UserApi';
 import MobileForecastsNav from './components/forecasts/MobileForecastsNav';
 import { UserInfoContext, UserInfoProvider } from './context/UserInfoContext';
 
 function App() {
 	const [spots, setSpots] = useState([]);
-
-	useEffect(() => {
-		const getSpots = async () => {
-			setSpots(await getSpotList());
-		};
-		getSpots();
-	}, []);
 
 	return (
 		<UserInfoProvider>

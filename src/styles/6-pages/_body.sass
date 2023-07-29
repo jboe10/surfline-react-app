@@ -1,16 +1,16 @@
 .body
-  padding-bottom: 30px
-  padding-top: 30px
+  padding-bottom: toRem(30)
+  padding-top: toRem(30)
   margin-right: 5%
   margin-left: 5%
   display: grid
   grid-template-columns: 2.4fr 1fr
-  grid-row-gap: 20px
-  grid-column-gap: 20px
+  grid-row-gap: toRem(20)
+  grid-column-gap: toRem(20)
   .articles
     display: grid
     grid-template-rows: auto 1fr
-    grid-gap: 15px
+    grid-gap: toRem(15)
     .featured-article
       +box-shadow
       cursor: pointer
@@ -18,7 +18,7 @@
       background-repeat: no-repeat
       background-size: cover
       width: 100%
-      height: 600px
+      height: toRem(600)
       display: flex
       .article-feature
         width: 100%
@@ -28,15 +28,15 @@
           margin-top: 0
           color: white
           font-weight: 600
-          font-size: 40px
+          font-size: toRem(40)
           background-color: rgba(0,0,0,0.6)
           width: 100%
           margin-bottom: 0
-          padding: 35px 0 35px 35px 
+          padding: toRem(35) 0 toRem(35) toRem(35) 
     .other-articles
       display: grid
       grid-template-columns: 1fr 1fr 1fr
-      grid-gap: 15px
+      grid-gap: toRem(15)
   .forecasts
     .surf-break-of-day
       +box-shadow
@@ -49,53 +49,52 @@
       text-align: center
       color: white
       .spot-name
-        font-size: 16px
+        font-size: toRem(16)
         position: absolute
-        bottom: 8px
-        left: 16px
+        bottom: toRem(8)
+        left: toRem(16)
         .dot
-          height: 7px
-          width: 7px
+          height: toRem(7)
+          width: toRem(7)
           background-color: green
           border-radius: 50%
           display: inline-block
-          margin-right: 5px
-          margin-bottom: 2px
+          margin-right: toRem(5)
+          margin-bottom: toRem(2)
       .spot-conditions
         display: flex
         color: white
         font-weight: 600
         position: absolute
-        bottom: 8px
-        right: 16px
+        bottom: toRem(8)
+        right: toRem(16)
         .condition
-          margin-right: 10px
+          margin-right: toRem(10)
     .area-forecast
-      margin-bottom: 15px
-      padding: 15px
+      margin-bottom: toRem(15)
+      padding: toRem(15)
       background-color: white
 
       h3 
         color: rgba(0,0,0,0.8)
-        font-size: 20px
-        margin-top: 5px
+        font-size: toRem(20)
+        margin-top: toRem(5)
       h5 
         color: rgba(0,0,0,0.8)
         margin-bottom: 0
       p 
-        margin-top: 5px
-        font-size: 14px
+        margin-top: toRem(5)
+        font-size: toRem(14)
   .sign-up-ad
     +box-shadow
-    padding: 15px
+    padding: toRem(15)
     background-color: white
     background-position: center
     background-repeat: no-repeat
     background-size: cover
-    height: 400px
-    min-height: 400px
+    height: toRem(400)
+    min-height: toRem(400)
     color: white
-    // text-align: center
     position: relative
     .sign-up-ad-info
       display: flex
@@ -103,7 +102,7 @@
       h2 
         margin-bottom: 0
       h5 
-        margin-top: 10px
+        margin-top: toRem(10)
       h3 
 @media screen and ( max-width: $large)
   .body

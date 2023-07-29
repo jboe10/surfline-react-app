@@ -1,17 +1,17 @@
 .forecast-swell-info
-  padding: 20px 0
-  border-bottom: 1px solid $light-gray-border
+  padding:  toRem(20) 0
+  border-bottom: toRem(1) solid $light-gray-border
   .main-swell-info
     display: grid
     grid-template-columns: 1fr 1fr
-    grid-row-gap: 20px
+    grid-row-gap:  toRem(20)
     justify-content: center
     .swell-info-wrap
       display: flex
       justify-content: center
       margin-bottom: auto
       .swell-info
-        max-width: 150px
+        max-width: toRem(150)
         display: flex
         flex-direction: column
         align-items: center
@@ -37,7 +37,7 @@
           font-size: .9em
           font-weight: 500
           color: $light-gray-text
-          margin-bottom: 5px
+          margin-bottom: toRem(5)
         .swell-summary
           display: flex
           justify-content: center
@@ -45,12 +45,12 @@
           font-size: .85em
           .circle
             border-radius: 50%
-            width: 8px
-            height: 8px
-            margin-top: 2px
+            width: toRem(8)
+            height: toRem(8)
+            margin-top: toRem(2)
             margin-right: auto
           .swell-height-direction
-            margin-left: 3px
+            margin-left: toRem(3)
 @media screen and ( min-width: $small )
   .forecast-swell-info
     .main-swell-info

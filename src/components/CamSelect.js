@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faPlusCircle,
@@ -6,34 +6,15 @@ import {
 	faArrowLeft,
 	faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
-import CamFavorite from './CamFavorite';
-import { getUserInfo } from '../api/UserApi';
+import { CamFavorite } from './CamFavorite';
 import AddFavoriteSpots from './AddFavoriteSpots';
 import { scrollLeftSmooth } from '../utils/Helpers';
-import { useContext } from 'react';
-import { UserInfoContext } from '../context/UserInfoContext';
+import { useUserInfo } from '../hooks/queries/UseUserInfo';
 
 export default function CamSelect() {
-	const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext);
-	const [favoriteSpots, setFavoriteSpots] = useState([]);
 	const [showAddSpots, setShowAddSpots] = useState(false);
 	const favsEle = useRef(null);
-
-	useEffect(() => {
-		const getUserSpots = async () => {
-			try {
-				const userInfo = await getUserInfo();
-				if (userInfo !== undefined) {
-					// setFavoriteSpots(userInfo);
-					console.log(userInfo);
-					setUserInfoContext({ favoriteSpots: [...userInfo] });
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		};
-		getUserSpots();
-	}, [showAddSpots]);
+	const queryUserInfo = useUserInfo();
 
 	const addClickHandler = () => {
 		setShowAddSpots(true);
@@ -50,21 +31,21 @@ export default function CamSelect() {
 	return (
 		<>
 			<div className="cam-select">
-				<div className="favorites-wrap" ref={favsEle}>
-					<div className="add-favorite-wrap" onClick={addClickHandler}>
-						<div className="add-favorite">
-							<div className="add">
-								<FontAwesomeIcon icon={faPlusCircle} />
-								<FontAwesomeIcon className="minus" icon={faMinusCircle} />
-							</div>
-							<div className="text">
-								<h5>Add/Remove Favorites</h5>
-								<span>Quickly access the spots you care about most.</span>
-							</div>
+				<div className="add-favorite-wrap" onClick={addClickHandler}>
+					<div className="add-favorite">
+						<div className="add">
+							<FontAwesomeIcon icon={faPlusCircle} />
+							<FontAwesomeIcon className="minus" icon={faMinusCircle} />
+						</div>
+						<div className="text">
+							<h5>Add/Remove Favorites</h5>
+							<span>Quickly access the spots you care about most.</span>
 						</div>
 					</div>
+				</div>
+				<div className="favorites-wrap" ref={favsEle}>
 					<div className="favorites">
-						{userInfoContext.favoriteSpots?.map(spot => (
+						{queryUserInfo.data?.map(spot => (
 							<CamFavorite
 								id={spot._id}
 								name={spot.name}

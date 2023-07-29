@@ -5,7 +5,7 @@ import { surfColorClassNameGen } from '../utils/Helpers';
 
 const surfQuality = 'surf-quality';
 
-export default function CamFavorite(props) {
+function CamFavoriteMemo(props) {
 	const surfQualityColor = surfColorClassNameGen(surfQuality, props.quality);
 
 	return (
@@ -28,3 +28,5 @@ export default function CamFavorite(props) {
 		</div>
 	);
 }
+
+export const CamFavorite = React.memo(CamFavoriteMemo);

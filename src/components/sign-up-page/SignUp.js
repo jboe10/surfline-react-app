@@ -5,29 +5,27 @@ import {
 	faEnvelopeOpenText,
 	faNewspaper,
 	faCompass,
-	faEye,
 } from '@fortawesome/free-solid-svg-icons';
-import { CreateUser } from '../../api/LoginApi';
-import { useHistory } from 'react-router-dom';
 import {
 	nameLoginValidation,
 	emailLoginValidation,
 	passwordLoginValidation,
 	passwordReEnterValidation,
 } from '../../utils/Helpers';
+import { UseCreateUser } from '../../hooks/mutations/UseCreateUser';
 
 export default function LogInPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordReEnter, setPasswordReEnter] = useState('');
-
 	const [name, setName] = useState('');
-	const history = useHistory();
 
 	const nameInput = useRef(null);
 	const emailInput = useRef(null);
 	const passwordInput = useRef(null);
 	const passwordInputReEnter = useRef(null);
+
+	const mutation = UseCreateUser();
 
 	const formSubmit = async event => {
 		event.preventDefault();
@@ -56,13 +54,7 @@ export default function LogInPage() {
 			: (passwordInputReEnter.current.className = 'border-red');
 
 		if (nameValid && emailValid && passwordValid && passwordReEnterValid) {
-			console.log(passwordReEnterValid);
-			const resp = await CreateUser(name, email, password);
-			if (resp) {
-				history.push('/login');
-			} else {
-				alert('Email in Use');
-			}
+			mutation.mutate({ name, email, password });
 		}
 	};
 

@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { getSpotList } from '../../api/UserApi';
-import CamFavorite from '../CamFavorite';
+import { getSpotList, useSpotList } from '../../hooks/queries/UseSpotList';
+import { CamFavorite } from '../CamFavorite';
 import SearchBar from '../SearchBar';
 
 export default function MobileForecastsNav() {
-	const [spots, setSpots] = useState([]);
-
-	useEffect(() => {
-		const getSpots = async () => {
-			setSpots(await getSpotList());
-		};
-		getSpots();
-	}, []);
+	const query = useSpotList();
 
 	return (
 		<>
 			<SearchBar />
 			<div className="search-results">
-				{spots.map(spot => (
+				{query.data?.map(spot => (
 					<CamFavorite
 						id={spot._id}
 						name={spot.name}

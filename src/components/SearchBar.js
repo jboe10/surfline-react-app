@@ -3,28 +3,24 @@ import surfline from '../imgs/fullLogo.png';
 import surflineSmall from '../imgs/surfline.png';
 import SearchModal from './SearchModal';
 import DropdownMenu2 from '../resources/DropdownMenu2';
-import { getSpotList } from '../api/UserApi';
-import { UserInfoContext } from '../context/UserInfoContext';
-import { useContext } from 'react';
+import { useSpotList } from '../hooks/queries/UseSpotList';
+import { useUserInfo } from '../hooks/queries/UseUserInfo';
 
 export default function SearchBar() {
 	const [showSearchModal, setShowSearchModal] = useState(false);
 	const [forecastDrop, setForecastDrop] = useState(false);
-	const [spots, setSpots] = useState([]);
 	const [showLogout, setShowLogout] = useState(false);
-	const [userInfoContext, setUserInfoContext] = useContext(UserInfoContext);
+	const query = useSpotList();
+	const q2 = useUserInfo();
 
 	useEffect(() => {
-		const getSpots = async () => {
-			setSpots(await getSpotList());
-		};
-		const token = localStorage.getItem('auth-token');
+		const token = localStorage.getItem('authorization');
 		if (token) {
 			setShowLogout(true);
 		} else {
+			localStorage.removeItem('authorization');
 			setShowLogout(false);
 		}
-		getSpots();
 	}, []);
 
 	let searchModal;
@@ -33,16 +29,21 @@ export default function SearchBar() {
 		: (searchModal = null);
 
 	const logoutClickHandler = () => {
-		const token = localStorage.getItem('auth-token');
-		if (token) {
-			setShowLogout(false);
-			localStorage.setItem('auth-token', '');
-		}
-		setUserInfoContext({ favoriteSpots: [] });
+		setShowLogout(false);
+		localStorage.setItem('authorization', '');
+		q2.refetch();
 	};
 
 	const searchClickHandler = () => {
 		setShowSearchModal(true);
+	};
+
+	const mouseEnterHandler = () => {
+		setForecastDrop(true);
+	};
+
+	const mouseLeaveHandler = () => {
+		setForecastDrop(false);
 	};
 
 	return (
@@ -68,11 +69,13 @@ export default function SearchBar() {
 				</div>
 				<div
 					className="dropdown-f"
-					onMouseEnter={() => setForecastDrop(true)}
-					onMouseLeave={() => setForecastDrop(false)}
+					onMouseEnter={mouseEnterHandler}
+					onMouseLeave={mouseLeaveHandler}
 				>
 					FORECASTS
-					{forecastDrop && <DropdownMenu2 link="/forecasts/" spots={spots} />}
+					{forecastDrop && (
+						<DropdownMenu2 link="/forecasts/" spots={query.data} />
+					)}
 				</div>
 				<div className="news-link">
 					<a href="/news">NEWS</a>
