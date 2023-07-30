@@ -29,7 +29,6 @@ describe('LoginPage', () => {
 
 		// also see if we saved auth header to local storage
 		cy.getAllLocalStorage().then(response => {
-			console.log(response);
 			expect(auth).to.equal(response['http://localhost:3000'].authorization);
 		});
 
@@ -47,7 +46,6 @@ describe('LoginPage', () => {
 		cy.get('#login-btn').click();
 		cy.wait('@loginAttempt').then(({ request, response }) => {
 			expect(response.statusCode).to.equal(400);
-			auth = response.body.token;
 		});
 		cy.url().should('eq', 'http://localhost:3000/login');
 	});
