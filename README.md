@@ -1,3 +1,7 @@
+## Run cypress
+
+./node_modules/.bin/cypress open
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
