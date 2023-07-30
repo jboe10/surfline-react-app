@@ -44,6 +44,7 @@ export default function SignIn() {
 							<div className="login-input">
 								<input
 									type="text"
+									id="login-email"
 									onChange={loginInputChangeHandler}
 									placeholder="EMAIL"
 								/>
@@ -51,12 +52,13 @@ export default function SignIn() {
 							<div className="login-input">
 								<input
 									type="password"
+									id="login-password"
 									onChange={passwordInputChangeHandler}
 									placeholder="PASSWORD"
 								/>
 							</div>
 							{/* <a href="/">Forgot Password?</a> */}
-							<button type="submit" className="sign-in-btn">
+							<button type="submit" className="sign-in-btn" id="login-btn">
 								SIGN IN
 							</button>
 						</form>
