@@ -11,7 +11,7 @@ describe('LoginPage', () => {
 		cy.get('#sign-up-btn').click();
 		cy.visit('http://localhost:3000/login');
 	});
-	it('login with valid email and save token in local storage, then sent to home page', () => {
+	it('login with valid email and save token in local storage and persists on page visits, then sent to home page', () => {
 		// intercept login attempt
 		cy.intercept('POST', '**/api/user/login').as('loginAttempt');
 
@@ -33,6 +33,12 @@ describe('LoginPage', () => {
 		});
 
 		cy.url().should('eq', 'http://localhost:3000/');
+
+		// auth persists on page visits
+		cy.visit('http://localhost:3000/login');
+		cy.getAllLocalStorage().then(response => {
+			expect(auth).to.equal(response['http://localhost:3000'].authorization);
+		});
 	});
 
 	it('Attempt login with invalid creds', () => {

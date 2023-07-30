@@ -85,9 +85,17 @@ export default function SearchBar() {
 				<a className="free-trial-btn" href="/join">
 					START FREE TRIAL
 				</a>
-				{!showLogout && <a href="/login">SIGN IN</a>}
+				{!showLogout && (
+					<a id="home-page-sign-in" href="/login">
+						SIGN IN
+					</a>
+				)}
 				{showLogout && (
-					<div className="logout-btn" onClick={logoutClickHandler}>
+					<div
+						id="home-page-logout"
+						className="logout-btn"
+						onClick={logoutClickHandler}
+					>
 						LOGOUT
 					</div>
 				)}
