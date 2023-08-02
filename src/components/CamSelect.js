@@ -33,7 +33,7 @@ export default function CamSelect() {
 			<div className="cam-select">
 				<div className="add-favorite-wrap" onClick={addClickHandler}>
 					<div className="add-favorite">
-						<div className="add">
+						<div className="add" id="add-favorite-open-modal">
 							<FontAwesomeIcon icon={faPlusCircle} />
 							<FontAwesomeIcon className="minus" icon={faMinusCircle} />
 						</div>

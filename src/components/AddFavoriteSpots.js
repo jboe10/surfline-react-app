@@ -78,8 +78,9 @@ export default function AddFavoriteSpots(props) {
 			className="add-favorite-spots"
 			onClick={clickOutsideOfCheckboxHandler}
 			ref={backgroundDiv}
+			id="add-favorite-spots-modal-outside"
 		>
-			<div className="spots-modal">
+			<div className="spots-modal" id="add-favorite-spots-modal">
 				<div className="checkbox-wrap">
 					{checkBoxSpots?.map((check, index) => (
 						<div className="checkboxes" key={check.spot.name}>
@@ -98,7 +99,9 @@ export default function AddFavoriteSpots(props) {
 						<button onClick={saveClickHandler}>Save</button>
 					</div>
 					<div className="cancel">
-						<button onClick={cancelClickHandler}>Cancel</button>
+						<button onClick={cancelClickHandler} id="cancel-add-favorite">
+							Cancel
+						</button>
 					</div>
 				</div>
 			</div>
